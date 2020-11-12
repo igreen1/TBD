@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {BsFillTrashFill} from 'react-icons/bs'
+import { Link } from 'react-router-dom';
 
 
 
@@ -9,9 +10,9 @@ export class EmailItem extends Component {
         return {
             backgroundColor: this.props.email.selected ? '#e5e5e5' : '#fff',
             padding: '30px',
-            borderBottom: '1px #000000 solid',
-            borderLeft: '1px #ccc solid',
-            borderRight: '1px #ccc solid',
+            borderBottom: '1px #AAAAAA solid',
+            borderLeft: '1px #AAAAAA solid',
+            borderRight: '1px #AAAAAA solid',
             textDecoration: 'none'
             }
     }
@@ -21,7 +22,7 @@ export class EmailItem extends Component {
             color: '#000000',
             border: 'none',
             padding: '6px 8px',
-            marginTop: '20px',
+            marginTop: '-40px',
             borderRadius: '50%',
             cursor: 'pointer',
             float: 'right',
@@ -38,22 +39,26 @@ export class EmailItem extends Component {
     render() {
         const { id, profile, from, subject } = this.props.email;
         return (
+            <React.Fragment>
             <div style={this.getStyle()}>
+                <div className="emails">
                 <input className="select" 
                         type="checkbox"
-                        onChange={this.props.markSelected.bind(this, id)} /> {' '}   
+                        onChange={this.props.markSelected.bind(this, id)} /> {' '}
+                    <Link className="link" to='/email'>
                     <div className="profile" style={this.getSelectedStyle()}>{profile}</div>
                     <div className="from">
                         {from}
-                        <BsFillTrashFill className="del"
+                    </div>
+                    <div className="subject" style={this.getSelectedStyle()}>{subject}</div>
+                    </Link>
+                    <BsFillTrashFill className="del"
                                     size={32}
                                     onClick={this.props.delEmail.bind(this, id)} 
                                     style={this.getDelStyle()}/>
                     </div>
-                    <div className="subject" style={this.getSelectedStyle()}>{subject}</div>
-                    
-
             </div>
+            </React.Fragment>
         )
     }
 }

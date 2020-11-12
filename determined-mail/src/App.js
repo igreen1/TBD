@@ -7,6 +7,9 @@ import About from './components/pages/About';
 import NewMessage from './components/NewMessage'
 import Spam from './components/Spam';
 import Deleted from './components/Deleted';
+import DummyEmail from './components/pages/DummyEmail';
+import SideNav from './components/layout/SideNav'
+
 
 import profile1 from './components/profiles/profile1.png'
 import profile2 from './components/profiles/profile2.png'
@@ -152,12 +155,12 @@ class App extends Component {
           <Router>
             <div className="App">
               <div className="container">
-                <Header />
-                <NavBar />
+                <SideNav />
                 <div className="inbox">
                   <switch>
                    <Route exact path="/" render={props => (
                       <React.Fragment>
+                        <header className="page-header">Inbox</header>
                           <Emails emails={this.state.emails}
                                 markSelected={this.markSelected}
                                 delEmail={this.delEmail} />
@@ -165,6 +168,7 @@ class App extends Component {
                     )} />
                     <Route path="/spam" render={props => (
                       <React.Fragment>
+                       <header className="page-header">Spam</header>
                           <Spam spam={this.state.spam}
                                 markSelectedSpam={this.markSelectedSpam}
                                 delSpam={this.delSpam} />
@@ -172,6 +176,7 @@ class App extends Component {
                     )} />  
                     <Route path="/deleted" render={props => (
                       <React.Fragment>
+                        <header className="page-header">Deleted</header>
                           <Deleted deleted={this.state.deleted}
                                 markSelectedDeleted={this.markSelectedDeleted}
                                 delDeleted={this.delDeleted} />
@@ -179,6 +184,8 @@ class App extends Component {
                     )} />  
                   <Route path="/about" component={About} />
                   <Route path="/newMessage" component={NewMessage}/>
+                  <Route path="/email" component={DummyEmail}/>
+
                   </switch>
                 </div>              
               </div>
