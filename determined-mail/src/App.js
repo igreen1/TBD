@@ -131,7 +131,7 @@ class App extends Component {
 
   // Delete Spam
   delSpam = (id) => {
-    this.setState({deleted: [...this.state.deleted, ...this.state.emails.filter(email => email.id === id)]});
+    this.setState({deleted: [...this.state.deleted, ...this.state.spam.filter(email => email.id === id)]});
     this.setState({ spam: [...this.state.spam.filter(spam => spam.id !== id)] });
   }
 
