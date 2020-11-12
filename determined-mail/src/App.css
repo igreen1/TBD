@@ -49,5 +49,11 @@
   border: 1px #aaaaaa solid;
 }
 
+.logo {
+  display: inline;
+  float: left;
+  margin-top: -80px;
+}
+
 
 

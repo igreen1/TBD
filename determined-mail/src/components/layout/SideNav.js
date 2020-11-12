@@ -11,6 +11,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ErrorIcon from '@material-ui/icons/Error';
 import EditIcon from '@material-ui/icons/Edit';
+import logo from './logo.png';
 import { Link } from "react-router-dom";
 
 
@@ -49,6 +50,10 @@ export default function SideNav() {
       <React.Fragment>
           <header className='header' style={headerStyle}>
                 <h1>Determined Mail</h1>
+
+                <div className="logo">
+                <img src={logo} alt='logo' height='80' width='80'/>
+                </div>
             </header>
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
