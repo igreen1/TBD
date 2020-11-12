@@ -25,7 +25,7 @@ export const SidebarData = [
   },
   {
     title: 'Spam',
-    path: '/products',
+    path: '/spam',
     icon: <RiSpam2Fill />,
     cName: 'nav-text'
   },
