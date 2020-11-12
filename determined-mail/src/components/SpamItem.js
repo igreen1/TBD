@@ -4,10 +4,10 @@ import {BsFillTrashFill} from 'react-icons/bs'
 
 
 
-export class EmailItem extends Component {
+export class SpamItem extends Component {
     getStyle = () => {
         return {
-            backgroundColor: this.props.email.selected ? '#e5e5e5' : '#fff',
+            backgroundColor: this.props.spam.selected ? '#e5e5e5' : '#fff',
             padding: '30px',
             borderBottom: '1px #000000 solid',
             borderLeft: '1px #ccc solid',
@@ -30,24 +30,24 @@ export class EmailItem extends Component {
 
     getSelectedStyle = () => {
         return {
-            opacity: this.props.email.selected ? '70%' : '100%'
+            opacity: this.props.spam.selected ? '70%' : '100%'
         }
     }
 
 
     render() {
-        const { id, profile, from, subject } = this.props.email;
+        const { id, profile, from, subject } = this.props.spam;
         return (
             <div style={this.getStyle()}>
                 <input className="select" 
                         type="checkbox"
-                        onChange={this.props.markSelected.bind(this, id)} /> {' '}   
+                        onChange={this.props.markSelectedSpam.bind(this, id)} /> {' '}   
                     <div className="profile" style={this.getSelectedStyle()}>{profile}</div>
                     <div className="from">
                         {from}
                         <BsFillTrashFill className="del"
                                     size={32}
-                                    onClick={this.props.delEmail.bind(this, id)} 
+                                    onClick={this.props.delSpam.bind(this, id)} 
                                     style={this.getDelStyle()}/>
                     </div>
                     <div className="subject" style={this.getSelectedStyle()}>{subject}</div>
@@ -59,11 +59,11 @@ export class EmailItem extends Component {
 }
 
 // PropTypes
-EmailItem.propTypes = {
-    email: PropTypes.object.isRequired
+SpamItem.propTypes = {
+    spam: PropTypes.object.isRequired
 }
 
 
 
 
-export default EmailItem
+export default SpamItem;
