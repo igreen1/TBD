@@ -4,13 +4,21 @@ import Header from './components/layout/Header';
 
 import Emails from './components/Emails';
 import About from './components/pages/About';
-import axios from 'axios';
+import Spam from './components/Spam';
+import Deleted from './components/Deleted';
 
 import profile1 from './components/profiles/profile1.png'
 import profile2 from './components/profiles/profile2.png'
 import profile3 from './components/profiles/profile3.png'
 import profile4 from './components/profiles/profile4.png'
 import profile5 from './components/profiles/profile5.png'
+import profile6 from './components/profiles/profile6.png'
+import profile7 from './components/profiles/profile7.png'
+import profile8 from './components/profiles/profile8.png'
+import profile9 from './components/profiles/profile9.png'
+import profile10 from './components/profiles/profile10.png'
+
+
 
 import NavBar from './components/layout/NavBar';
 import './App.css';
@@ -36,6 +44,20 @@ class App extends Component {
         selected: false
       },
       {
+        id: 5,
+        profile: <img src={profile9} alt='profile9' height='60' width='60'/>,
+        from: "From: Taylor Flanagan",
+        subject: "Subject: Help with Homework",
+        selected: false
+      },
+      {
+        id: 10,
+        profile: <img src={profile10} alt='profile1' height='60' width='60'/>,
+        from: "From: Megan West",
+        subject: "Subject: Take DEEP",
+        selected: false
+      },
+      {
         id: 3,
         profile: <img src={profile1} alt='profile1' height='60' width='60'/>,
         from: "From: Nicole Infantino",
@@ -49,7 +71,32 @@ class App extends Component {
         subject: "Subject: TA Grading",
         selected: false
       }
-    ]
+    ],
+    spam: [
+      {
+        id: 6,
+        profile: <img src={profile6} alt='profile6' height='60' width='60'/>,
+        from: "From: SNAIL MAIL",
+        subject: "Subject: SPAMMMMMY",
+        selected: false
+      }
+    ],
+    deleted: [
+      {
+      id: 7,
+      profile: <img src={profile7} alt='profile7' height='60' width='60'/>,
+      from: "From: Jack Manson",
+      subject: "Subject: Complete this Survey",
+      selected: false
+    },
+    {
+      id: 8,
+      profile: <img src={profile8} alt='profile8' height='60' width='60'/>,
+      from: "From: Jenny Little",
+      subject: "Subject: Lost Items",
+      selected: false
+    }
+  ]
   }
 
   // Toggle Selected
@@ -62,8 +109,40 @@ class App extends Component {
     }) });
   }
 
+  // Toggle Spam Selected
+  markSelectedSpam = (id) => {
+    this.setState({ spam: this.state.spam.map(spam => {
+      if(spam.id === id) {
+        spam.selected = !spam.selected
+      }
+      return spam;
+    }) });
+  }
+
+  // Toggle Deleted Selected
+  markSelectedDeleted = (id) => {
+    this.setState({ deleted: this.state.deleted.map(deleted => {
+      if(deleted.id === id) {
+        deleted.selected = !deleted.selected
+      }
+      return deleted;
+    }) });
+  }
+
+  // Delete Spam
+  delSpam = (id) => {
+    this.setState({deleted: [...this.state.deleted, ...this.state.emails.filter(email => email.id === id)]});
+    this.setState({ spam: [...this.state.spam.filter(spam => spam.id !== id)] });
+  }
+
+  // Delete for Good
+  delDeleted = (id) => {
+    this.setState({ deleted: [...this.state.deleted.filter(deleted => deleted.id !== id)] });
+  }
+
   // Delete Email
   delEmail = (id) => {
+    this.setState({deleted: [...this.state.deleted, ...this.state.emails.filter(email => email.id === id)]});
     this.setState({ emails: [...this.state.emails.filter(email => email.id !== id)] });
   }
 
@@ -84,11 +163,23 @@ class App extends Component {
                                 delEmail={this.delEmail} />
                       </React.Fragment>
                     )} />
+                    <Route path="/spam" render={props => (
+                      <React.Fragment>
+                          <Spam spam={this.state.spam}
+                                markSelectedSpam={this.markSelectedSpam}
+                                delSpam={this.delSpam} />
+                      </React.Fragment>
+                    )} />  
+                    <Route path="/deleted" render={props => (
+                      <React.Fragment>
+                          <Deleted deleted={this.state.deleted}
+                                markSelectedDeleted={this.markSelectedDeleted}
+                                delDeleted={this.delDeleted} />
+                      </React.Fragment>
+                    )} />  
                   <Route path="/about" component={About} />
                   </switch>
-                </div>
-                
-                
+                </div>              
               </div>
                 
             </div>
