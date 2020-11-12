@@ -4,6 +4,7 @@ import Header from './components/layout/Header';
 
 import Emails from './components/Emails';
 import About from './components/pages/About';
+import NewMessage from './components/NewMessage'
 import axios from 'axios';
 
 import profile1 from './components/profiles/profile1.png'
@@ -14,7 +15,6 @@ import profile5 from './components/profiles/profile5.png'
 
 import NavBar from './components/layout/NavBar';
 import './App.css';
-
 
 
 
@@ -85,6 +85,7 @@ class App extends Component {
                       </React.Fragment>
                     )} />
                   <Route path="/about" component={About} />
+                  <Route path="/newMessage" component={NewMessage}/>
                   </switch>
                 </div>
                 
